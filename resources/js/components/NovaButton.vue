@@ -27,7 +27,6 @@
 </style>
 
 <script>
-import {Inertia} from '@inertiajs/inertia';
 import {queue} from '../queue.js';
 
 export default {
@@ -135,22 +134,22 @@ export default {
     navigate() {
       if (this.field.type === 'route') {
         const r = this.field.route;
-        const base = `${Nova.appConfig.base}/resources/`;
+        const base = `/resources/`;
         const filter = `${r.params.resourceName}_filter`;
         if (r.name === 'lens') {
-          Inertia.visit(`${base}${r.params.resourceName}/${r.name}/${r.params.lens}`);
+          Nova.visit(`${base}${r.params.resourceName}/${r.name}/${r.params.lens}`);
         } else if (r.name === 'index') {
           if(r.query[filter]){
-            Inertia.visit(`${base}${r.params.resourceName}?${filter}=${r.query[filter]}`);
+            Nova.visit(`${base}${r.params.resourceName}?${filter}=${r.query[filter]}`);
           }else{
-            Inertia.visit(`${base}${r.params.resourceName}/`);
+            Nova.visit(`${base}${r.params.resourceName}/`);
           }
         } else if (r.name === 'edit') {
-          Inertia.visit(`${base}${r.params.resourceName}/${r.params.resourceId}/edit`);
+          Nova.visit(`${base}${r.params.resourceName}/${r.params.resourceId}/edit`);
         } else if (r.name === 'detail') {
-          Inertia.visit(`${base}${r.params.resourceName}/${r.params.resourceId}/`);
+          Nova.visit(`${base}${r.params.resourceName}/${r.params.resourceId}/`);
         } else {
-          Inertia.visit(`${base}${r.params.resourceName}/new/`);
+          Nova.visit(`${base}${r.params.resourceName}/new/`);
         }
 
         return true;
